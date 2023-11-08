@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    background-color: #008080;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #008080;
+  }
+
+  .filter-form {
+    text-align: center;
+    margin: 20px;
+  }
+
+</style>
+<body>
+  <h1>My blog</h1>
+  <ul>
+    <% blogPosts.forEach((post) => { %>
+      <li>
+        <h2><%= post.title %></h2>
+        <p><%= post.content.slice(0, 100) %></p>
+        <a href="/post/<%= blogPosts.indexOf(post) %>">Read more</a>
+      </li>
+    <% }); %>
+  </ul>
+  
+  <a href="/add">Add message</a>
+
+  <h1>NEWS Blog</h1>
+
+  <form class="filter-form" method="get" action="/">
+    <label for="filter">Filter News:</label>
+    <input type="text" name="filter" id="filter" placeholder="Enter a keyword">
+    <button type="submit">Apply Filter</button>
+  </form>
+  
+  <ul>
+    <% news.forEach((article, index) => { %>
+      <li>
+        <h2><%= article.title %></h2>
+        <p><%= article.description %></p>
+        <a href="<%= article.url %>" target="_blank">Read More</a>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
